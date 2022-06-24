@@ -13,4 +13,4 @@ jobs:
     - name: test manifests folder
       uses: instrumenta/kubeval-action@master
       with: 
-       files: ./manifests
+       files: manifests
