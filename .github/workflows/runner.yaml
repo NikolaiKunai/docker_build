@@ -12,7 +12,6 @@ jobs:
       uses: instrumenta/kubeval-action@master
       with: 
        files: ./manifests
-jobs:
   slackNotification:
     name: Slack Notification
     runs-on: ubuntu-latest
