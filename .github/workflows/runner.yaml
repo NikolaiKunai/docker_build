@@ -1,12 +1,10 @@
 ### test
-name: runner
+name: Pull Request Check
 
-on:
-  push:
-    branches:
-      - "main"
+on: [pull_request]
+
 jobs:
-  build:
+  validation:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@master
@@ -14,3 +12,15 @@ jobs:
       uses: instrumenta/kubeval-action@master
       with: 
        files: ./manifests
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_COLOR: ${{ job.status }}
+        SLACK_TITLE: Pull Request Check
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
