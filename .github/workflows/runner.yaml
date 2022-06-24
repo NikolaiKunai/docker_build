@@ -13,6 +13,7 @@ jobs:
       with: 
        files: ./manifests
   slackNotification:
+    needs: validation
     name: Slack Notification
     runs-on: ubuntu-latest
     steps:
